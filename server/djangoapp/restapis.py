@@ -17,28 +17,25 @@ sentiment_analyzer_url = os.getenv(
 def get_request(endpoint, **kwargs):
     params = ""
 
-    if( kwargs ):
+    if(kwargs):
 
         for key, value in kwargs.items():
-            params=params+key+"="+value+"&"
+            params=params + key + "=" + value + "&"
 
     request_url = backend_url+endpoint+"?"+params
 
     print("GET from {} ".format(request_url))
     try:
-        # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
-        response.raise_for_status()  # Raises HTTPError for bad responses (4xx/5xx)
+        response.raise_for_status()  
         return response.json()
     except requests.exceptions.RequestException as e:
-        # Handles any network-related error (timeouts, connection errors, HTTP errors, etc.)
         print(f"Network exception occurred: {e}")
 
 
 def analyze_review_sentiments(text):
     request_url = sentiment_analyzer_url+"analyze/"+text
     try:
-        # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
         return response.json()
     except Exception as err:
@@ -49,9 +46,8 @@ def analyze_review_sentiments(text):
 def post_review(data_dict):
     request_url = backend_url+"/insert_review"
     try:
-        # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
-        response.raise_for_status()  # Raises HTTPError for bad responses
+        response.raise_for_status()  
         return response.json()
     except requests.exceptions.RequestException as err:
         print(f"Network exception occurred: {err} ({type(err).__name__})")
