@@ -20,14 +20,14 @@ def get_request(endpoint, **kwargs):
     if(kwargs):
 
         for key, value in kwargs.items():
-            params=params + key + "=" + value + "&"
+            params= params + key + " = " + value + " & "
 
-    request_url = backend_url+endpoint+"?"+params
+    request_url = backend_url + endpoint + " ? " + params
 
     print("GET from {} ".format(request_url))
     try:
         response = requests.get(request_url)
-        response.raise_for_status()  
+        response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Network exception occurred: {e}")
@@ -47,7 +47,7 @@ def post_review(data_dict):
     request_url = backend_url+"/insert_review"
     try:
         response = requests.get(request_url)
-        response.raise_for_status()  
+        response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as err:
         print(f"Network exception occurred: {err} ({type(err).__name__})")
