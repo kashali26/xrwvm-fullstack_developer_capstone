@@ -1,11 +1,7 @@
 # Uncomment the required imports before adding the code
 
-from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import logout
-from django.contrib import messages
-from datetime import datetime
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -44,8 +40,6 @@ def logout_request(request):
 
 @csrf_exempt
 def registration(request):
-    context = {}
-    
     data = json.loads(request.body)
     username = data['userName']
     password = data['password']
@@ -53,6 +47,7 @@ def registration(request):
     last_name = data['lastName']
     email = data['email']
     username_exist = False
+
     try:
         User.objects.get(username=username)
         username_exist = True
@@ -71,7 +66,7 @@ def registration(request):
         return JsonResponse(data)
 
 
-#Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
+# Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
     if(state == "All"):
         endpoint = "/fetchDealers"
