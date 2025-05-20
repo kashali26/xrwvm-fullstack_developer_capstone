@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+
 import os
 from pathlib import Path
 
@@ -28,11 +29,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'https://kashali2025-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+    'https://kashali2025-8000.\
+        theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://kashali2025-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+    'https://kashali2025-8000.\
+        theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
 ]
 
 REST_FRAMEWORK = {
